@@ -143,3 +143,120 @@ S7-1200 : ET 200의 발전
 
 
 <img src="img/new_project1_7_create_project.png" width="1000" height="800"> <br>
+
+<img src="img/new_project1_8_signal_boards_add.png" width="900" height="650"> <br>
+→ 드레그하여 추가 <br>
+→ 보드를 2, 3, 4… 확장하여 사용 가능 <br>
+
+
+
+
+<img src="img/new_project1_9_preferences.png" width="1000" height="450"> <br>
+→ 환경 설정 <br>
+```
+PROFINET interface[X1] : 표준 인터넷 방식 사용
+```
+
+<img src="img/new_project1_10_preferences_ip.png" width="1000" height="450"> <br>
+→ IP protocol 설정 가능 <br>
+
+```
+DI가 14개
+DQ가 10개
+AI(아날로그) 2개
+AQ1 Signal board(아날로그 출력) 1개
+```
+
+<img src="img/new_project1_11_preferences_password.png" width="1000" height="450"> <br>
+→ Password 설정 가능 <br>
+```
+HMI, Read, Write 각각 설정 가능
+```
+
+
+<img src="img/new_project1_12_ethernet_addresses.png" width="1000" height="700"> <br>
+→ Ethernet addresses 설정 가능 <br>
+```
+이미지에 나와있는 '포트' 더블클릭해서 바로 설정 가능
+```
+```
+[default value]
+
+192.168.0.1
+255.255.255.0
+```
+
+<img src="img/new_project1_13_io_tag_preferences.png" width="800" height="700"> <br>
+→ I/O tag 설정 가능 <br>
+```
+여기서 Q는 OUTPUT을 나타낸다.
+```
+
+
+<img src="img/new_project1_14_io_tree.png" width="280" height="650"> <br>
+```
+Device configuration : 환경 설정
+Program blocks : 실제 작업할 때 사용
+PLC tags : I/O tag 설정 → 좀 더 디테일하게 설정할 수 있다.
+```
+
+<img src="img/new_project1_15_programing.png" width="700" height="520"> <br>
+→ 프로그램 작성 <br>
+```
+☆ 'Main [OB1]'에서 프로그램 작성
+
+위에 회로 버튼 드레그하여 추가 가능
+
+입력 시 %I0.0 / %Q0.0 또는 "INPUT_0" / "OUTPUT_0" 하나만 써주면 자동으로 완성 된다.
+```
+
+<img src="img/new_project1_16_connect.png" width="700" height="520"> <br>
+→ 장비와 연결 (GoOnline) <br>
+
+```
+장비와 랜포트로 연결 안 한 경우는 'Start search' 및 연결 진행 불가
+```
+
+<img src="img/new_project1_17_compile.png" width="520" height="400"> <br>
+→ 컴파일 완료 및 연결 완료 (다운로드 바로 왼쪽 옆 버튼이 컴파일 버튼) <br>
+
+<img src="img/new_project1_18_download.png" width="600" height="400"> <br>
+→ download 진행 <br>
+```
+다운로드는 내 컴퓨터로 다운로드 하는 것이 아닌
+디바이스(프로그램)에 다운로드를 진행하는 것!
+
+
+cf) 
+우리나라는 업로드라고 하지만, 
+유럽에서는 사고 방식이 다르기 때문에 다운로드
+```
+
+<img src="img/new_project1_19_synchronization.png" width="600" height="400"> <br>
+→ Continue without synchronization : 처음 진행할 때는 동기화 없이 진행 <br>
+
+
+<img src="img/new_project1_20_load.png" width="600" height="400"> <br>
+→ Stop modules를 `stop all`로 진행 <br>
+
+<img src="img/new_project1_21_finish.png" width="600" height="400"> <br>
+→ 완료(finish) <br>
+
+```
+PC 및 프로그램 연결 완료
+```
+
+<img src="img/new_project1_22_monitoring.png" width="600" height="450"> <br>
+→ (안경 모양) 모니터링 가능 <br>
+→ 다시 누르면 모니터링 해제 <br>
+
+```
+모니터링 : 시뮬레이션 진행
+```
+
+```
+프로그램 작성 및 모니터링 후 별 다른 문제 없으면 
+'다운로드'하여 디바이스로 전송
+```
+
+---
