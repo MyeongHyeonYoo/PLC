@@ -260,3 +260,199 @@ PC 및 프로그램 연결 완료
 ```
 
 ---
+
+<img src="img/new_project2_1_basic_logic_circuit.png" width="760" height="450"> <br>
+```
+- YES NOT -
+
+PB1 : A접점 | PB2 : B접점
+
+A접점 : 평상시 open되어 있다가 누르면 close되면서 L1이 켜지는 형태 [YES 회로 - PLC에서 F3]
+B접점 : 평상시 close되어 있다가 누르면 open되면서 L2가 켜지는 형태 [NOT 회로 - PLC에서 F4]
+```
+
+```
+- AND OR -
+
+PB1 && PB2 동시에 on 되어야 L1 동작 [AND 회로]
+PB1 || PB2 둘 중 하나만 눌려도 L2 동작 [OR 회로 => 병렬 연결]
+```
+
+```
+- XOR -
+
+  (왼쪽)     |   (오른쪽)
+PB1 : A접점  |  PB1 : B접점
+PB2 : B접점  |  PB2 : A접점
+PB1이 On이면 || PB1이 Off면
+PB2는 Off    |  PB2는 On
+```
+
+```
+- XNOR -
+(XOR과 상반되는 것)
+
+  (왼쪽)       |    (오른쪽)
+PB1 : B접점    |   PB1 : A접점
+PB2 : B접점    |   PB2 : A접점
+PB1과 PB2가    |   PB1과 PB2가
+모두 Off일 때  ||  모두 On일 때
+      └→    L1 동작   ←┛
+```
+
+<img src="img/new_project2_2_self_holding_circuit.png" width="400" height="340"> <br>
+
+```
+PB1(A접점)이 떨어지더라도 연결선 R1 + PB0이 유지되어 '원 R1'의 동작 유지
+PB0(B접점)이 떨어져서야 비로소 R1 동작 중지 (자기유지 해제)
+
+★ 자기유지회로에는 항상 A접과 B접이 있어야 한다.
+```
+
+<br>
+
+cf
+```
+[RSTE와 출력 단자 UVWE]
+옛날 유럽에서는 용어에 대한 의미 없이 전기 파형에 따라 순서를 붙여 사용하였다.
+
+전기 : RST (RSTE : 흑적청녹)
+전동기 : UVW | E : 어스인 접지
+```
+
+
+<img src="img/new_project2_3_1_rst_uvw_table.png" width="380" height="250"> <br>
+<img src="img/new_project2_3_2_rst_uvw_table.png" width="700" height="680"> <br>
+
+```
+-접지선 : 녹색
+-중성선 : 백색 또는 회색
+-ABC 상 : 규정에는 없지만 보통 ABC상에 흑색, 적색, 청색 사용
+
+[법률에 따라 색상 변경 참고 : https://m.blog.naver.com/k5808151/222698221071]
+```
+
+<br>
+
+- **`Add new device`** <br>
+(Project view)
+
+  <img src="img/new_project2_4_add_new_device.png" width="750" height="550"> <br>
+
+  <img src="img/new_project2_5_1_add_io_tags.png" width="450" height="600"> <br>
+  <img src="img/new_project2_5_2_add_io_tags.png" width="450" height="200"> <br>
+  ```
+  Name에 하나만 입력하고 우측 하단 모서리의 네모점 드레그하면
+  엑셀처럼 숫자를 1씩 증가하여 작성 가능
+  ```
+
+  <img src="img/new_project2_6_show_all_tags.png" width="950" height="800"> <br>
+
+  ```
+  PLC tags ▶ Show all tags : 더 자세히 설정 가능
+  (PLC_1 [CPU XXX] ▶ Device configuration ▶ IO tags)
+
+  Name에 똑같이 드레그하면 추가할 수 있다.
+  ```
+
+  ```
+  Retain : 시스템이 정지가 되거나 전원이 꺼졌다 켜져도 값에 대한 유지 여부
+          (입·출력 설정 불가능 / data에 대하여 설정 가능)
+          ▶ 메모리 같은 경우, 전원을 껐다 켜도 값을 기억하고 있다.
+  ```
+
+  <br>
+
+  <img src="img/sign_main.png" width="300" height="50"> <br>
+
+  |<기호 표시>||
+  |:---:|:---:|
+  |<img src="img/sign_A.png" width="50" height="50">|A접점|
+  |<img src="img/sign_B.png" width="50" height="50">|B접점|
+  |<img src="img/sign_out.png" width="50" height="50"> |출력(Out)|
+  |<img src="img/sign_empty_box.png" width="50" height="50">|기능/조건 추가|
+  |<img src="img/sign_add_line.png" width="50" height="50">|줄 추가(Open branch)<br>병렬 연결|
+  |<img src="img/sign_line_connection.png" width="50" height="50">|줄 연결(Close branch)<br>|
+  |||
+
+  <br>
+
+  - AND <br>
+  <img src="img/new_project2_7_1_and.png" width="650" height="180"> <br>
+
+  - OR <br>
+  <img src="img/new_project2_7_2_or.png" width="650" height="250"> <br>
+
+  - X-OR <br>
+  <img src="img/new_project2_7_3_xor.png" width="650" height="250"> <br>
+
+  - X-NOR <br>
+  <img src="img/new_project2_7_4_xnor.png" width="650" height="250"> <br>
+
+  - 자기유지회로 <br>
+  <img src="img/new_project2_7_5_self_holding_circuit.png" width="650" height="250"> <br>
+
+    ```
+    comment : 주석 작성 가능
+    ```
+
+    
+    ◆ 컴파일 ( <img src="img/compile.png" width="25" height="25"> ) <br> 
+    <img src="img/new_project2_8_compile.png" width="650" height="250"> <br>
+    (이상 없이 컴파일 완료)
+    
+    ◆ 시뮬레이션 ( <img src="img/simulation.png" width="25" height="25"> ) <br> 
+    <img src="img/new_project2_9_simulation.png" width="850" height="450"> <br>
+    <img src="img/new_project2_10_simulation.png" width="780" height="450"> <br>
+    <img src="img/new_project2_11_simulation.png" width="280" height="300"> <br>
+    <img src="img/new_project2_12_1_simulation_new_project.png" width="700" height="320"> <br>
+    <img src="img/new_project2_12_2_simulation_new_project.png" width="600" height="250"> <br>
+    (시뮬레이션할 새로운 프로젝트 생성)
+
+    <img src="img/new_project2_13_start_simulation.png" width="720" height="270"> <br>
+    → 시뮬레이션 하고 싶은 것(출력하고 싶은 것) 추가
+    ```
+    ▶ IN00 : On
+    ```
+
+    <img src="img/new_project2_14_monitoring.png" width="720" height="580"> <br>
+
+    <img src="img/new_project2_15_monitoring_test.png" width="720" height="220"> <br>
+    → 00번만 켜져 있는 상태로써 다음으로 못 넘어감 <br>
+
+    <img src="img/new_project2_16_monitoring_test.png" width="720" height="280"> <br>
+    → 둘 중 하나만 켜지면 되기 때문에 넘어감 <br>
+
+    <img src="img/new_project2_17_monitoring_test.png" width="720" height="280"> <br>
+    → 서로 값이 다르면서 On <br>
+    ```
+    IN00 : 1
+    IN01 : 0
+    ```
+
+    <img src="img/new_project2_18_monitoring_test.png" width="720" height="280"> <br>
+    → 서로 값이 같아야 On 될 수 있다. <br>
+    
+    <img src="img/new_project2_19_add_on.png" width="720" height="270"> <br>
+    ```
+    ▶ IN00 : On / IN01 : On
+    ```
+
+    <img src="img/new_project2_20_monitoring_test.png" width="720" height="220"> <br>
+    <img src="img/new_project2_21_monitoring_test.png" width="720" height="280"> <br>
+    → 이미 하나가 켜져 있던 상태부터 On <br>
+    <img src="img/new_project2_22_monitoring_test.png" width="720" height="280"> <br>
+    → 서로 값이 같으면서(true) Off <br>
+    <img src="img/new_project2_23_monitoring_test.png" width="720" height="280"> <br>
+    → 서로 값이 같으면서(true) On <br>
+
+    - 자기유지회로 <br>
+      <img src="img/new_project2_24_monitoring_test.png" width="720" height="450"> <br>
+
+      <img src="img/new_project2_25_monitoring_test.png" width="720" height="450"> <br>
+
+      <img src="img/new_project2_26_monitoring_test.png" width="720" height="450"> <br>
+      <img src="img/new_project2_27_monitoring_test.png" width="720" height="450"> <br>
+      → B접을 꺼서 자기유지 해제 <br>
+
+---
