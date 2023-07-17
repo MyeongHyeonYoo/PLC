@@ -456,3 +456,141 @@ cf
       → B접을 꺼서 자기유지 해제 <br>
 
 ---
+
+<img src="img/new_project3_1_first_input_priority_circuit.png" width="320" height="450"> <br>
+→ 자기 유지회로가 2개 <br>
+→ PB1 또는 PB2 중, 먼저 눌려진 회로가 X1 또는 X2 작동 <br>
+→ X1 또는 X2가 (작동하여) 자기유지가 되면서 L1 또는 L2가 작동하는 형태가 '선입력 우선회로'이다. <br>
+→ X1이 유지하되는 동안에 PB2가 인터락을 걸어줘서 아무리 PB2를 눌러도 X2가 작동하지 않는 것이 '선입력 우선회로'이다. <br>
+→ 반대로 X2를 유지하는 동안 PB1에 인터락을 걸어 X1이 동작하지 않게 하는 방식도 똑같다. <br>
+
+
+<img src="img/new_project3_2_first_input_priority_circuit_3.png" width="800" height="450"> <br>
+→ PB1이 제일 먼저 눌린 경우, X1이 유지되는 동안 인터락을 2개 걸어준다. (X2, X3 동작 불가) <br>
+→ 마찬가지로 PB2, PB3 중 누가 먼저 눌렸는지에 따라 자기유지가 되면서 다른 회로의 인터락을 걸어준다. <br>
+
+<img src="img/new_project3_3_last_input_priority_circuit.png" width="800" height="450"> <br>
+→ X1과 X2가 선입력 우선회로와 달리 위치가 바뀌었다. <br>
+→ 인터락이었던 X1과 X2의 위치가 자기유지 해지가 된다. (☆인터락이 아니다.) <br>
+→ X1과 X2는 상대편이 자기유지를 해제시켜주는 회로가 되었다. <br>
+→ 3개인 경우도 자기유지를 해제시켜주는 것은 똑같다. 다만, 2개일 경우와 달리 자기유지를 해제시켜주는 것이 늘어날 뿐이다. <br>
+
+```
+선입력 & 후입력 우선회로
+
+회로가 3개 이상으로 계속해서 늘어나는 경우,
+★ 인터락을 걸어주는 것(선입력) 또는 자기유지를 해제시켜주는 것(후입력)이 늘어난다.
+
+(인터락을 걸어주는 것 또는 자기유지를 해제시켜주는 것 : 하나의 '릴레이')
+```
+
+♧ Create new project
+
+<img src="img/new_project3_4_io.png" width="650" height="220"> <br>
+```
+I : 입력
+O : 출력
+M : 릴레이
+```
+
+<img src="img/new_project3_5_1_self_holding_circuit_check.png" width="300" height="300"> <br>
+```
+A접 : 자기유지회로
+```
+<img src="img/new_project3_5_2_self_holding_circuit_check.png" width="480" height="450"> <br>
+<img src="img/new_project3_5_3_self_holding_circuit_check.png" width="480" height="225"> <br>
+→ 출력 회로 작성 <br>
+- 컴파일 <br>
+  - 컴파일 에러 <br>
+  <img src="img/new_project3_5_compile_error.png" width="750" height="580"> <br>
+    ```
+    branch 연결 안 되어 있는 문제
+    ```
+  - 컴파일 성공 <br>
+  <img src="img/new_project3_5_compile_complete.png" width="750" height="580"> <br>
+    ```
+    태그 형태로 작성하면 간단하게 프로그램이 잘 된다.
+
+    %d0.0    %d0.1
+    "PB0"    "PB1"  ...   ▶ 하나하나의 태그
+    ```
+
+- Start simulation <br>
+  <img src="img/new_project3_6_1_start_simulation.png" width="350" height="180"> <br>
+  <img src="img/new_project3_6_2_start_simulation.png" width="700" height="450"> <br>
+  <img src="img/new_project3_6_3_start_simulation.png" width="250" height="250"> <br>
+  ◇ Project → New… → Create <br>
+    ```
+    siemens(지멘스) PLC가 다른 PLC 시뮬레이션보다 오래걸린다.
+    ```
+  <img src="img/new_project3_6_4_start_simulation.png" width="800" height="245"> <br>
+
+
+- Monitoring on/off <br>
+
+  ※ 선입력 우선회로 <br>
+  <img src="img/new_project3_7_1_monitoring_on_off.png" width="600" height="240"> <br>
+  <img src="img/new_project3_7_2_monitoring_on_off.png" width="600" height="80"> <br>
+  <img src="img/new_project3_7_3_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB1을 On ▶ X1 On
+  ```
+  <img src="img/new_project3_7_4_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB2를 작동시키지만 X1에 대한 인터락이 걸려 있기 때문에 X2는 동작하지 않는다.
+  ```
+  <img src="img/new_project3_7_5_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB1을 끄고 PB2를 동작시켜도 똑같이 X2는 실행되지 않는다.
+  ```
+  <img src="img/new_project3_7_6_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB2를 켰다 꺼도 똑같이 X2는 동작하지 않는다.
+  인터락 회로가 걸려있기 때문에 아무리 PB2를 눌러도 X2는 동작하지 않는다.
+  ```
+  <img src="img/new_project3_7_7_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB0을 눌러 리셋 (PB1(X1), PB2(X2) 모두 꺼진 상태)
+  ```
+  <img src="img/new_project3_7_8_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB2를 눌러 X2 동작
+  ```
+  <img src="img/new_project3_7_9_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB1을 아무리 눌러도 X1는 동작하지 않는다.
+  ```
+  
+  ※ 후입력 우선회로 <br>
+  <img src="img/new_project3_8_switch.png" width="500" height="350"> <br>
+  - Compile <br>
+  - Simulation (Load - Start all 체크 후 Finish) <br>
+  - Monitoring <br>
+  <img src="img/new_project3_9_1_monitoring_on_off.png" width="700" height="450"> <br>
+  <img src="img/new_project3_9_2_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB1을 눌러 X1 동작 
+  ```
+  <img src="img/new_project3_9_3_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB1을 꺼도 X1 동작 유지 (X1 : 자기유지)
+  ```
+  <img src="img/new_project3_9_4_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB2를 눌러 X2 동작 → X1이 꺼지고 X2가 동작한다.
+  ```
+  <img src="img/new_project3_9_5_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB2를 꺼도 X2 동작 유지 (X2 : 자기유지)
+  ```
+  ```
+  ★ 나중에 눌린 것이 먼저 켜져 있던 것을 끊는다. 
+  ```
+
+  <img src="img/new_project3_10_monitoring_on_off.png" width="700" height="450"> <br>
+  ```
+  PB1과 PB2를 같이 키면 X1, X2 모두 켜진다.
+  ```
+  
+---
+
