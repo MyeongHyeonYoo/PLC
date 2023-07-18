@@ -594,3 +594,145 @@ A접 : 자기유지회로
   
 ---
 
+<img src="img/new_project4_1_chain_circuit.png" width="800" height="450"> <br>
+```
+L3가 동작하기 위해서는 L1과 L2가 동작하고 있어야 한다.
+X2가 동작하기 위해서는 X1이 동작하고 있어야 한다.
+```
+<img src="img/new_project4_2_chain_circuit.png" width="800" height="500"> <br>
+```
+[PB 스위치로 하는 이유]
+
+PLC 프로그램이기 때문에 PB 스위치로 하고, 일반적으로 '센서'로 동작하기 때문에 그러하다.
+```
+
+<img src="img/new_project4_3_one_button_circuit.png" width="800" height="500"> <br>
+```
+PB1을 눌렀을 때 L(램프)이 꺼져 있다면, L이 켜지게(On) 된다.
+PB1을 눌렀을 때 L(램프)이 켜져 있다면, L은 꺼지게(Off) 된다.
+```
+<img src="img/new_project4_4_one_button_circuit.png" width="500" height="380"> <br>
+```
+선입력 우선회로 (빨간 네모)
+
+다만, PB1이 밑에 있고, switch 대신 MC로 대체
+```
+<img src="img/new_project4_5_one_button_circuit.png" width="500" height="380"> <br>
+```
+현재 동작을 안 하는 상태라고 하면,
+
+위 그림과 같은 형태 (MC - X2 - [X1] 연결 / X1 - [X2] 연결)
+```
+<img src="img/new_project4_6_one_button_circuit.png" width="500" height="380"> <br>
+```
+PB1이 눌리면 X1 동작
+```
+<img src="img/new_project4_7_one_button_circuit.png" width="500" height="380"> <br>
+```
+(L 왼쪽 옆)MC가 동작한다.
+
+이 상태에서 PB1을 끊게되면 모두 끊어진다.
+```
+<img src="img/new_project4_8_one_button_circuit.png" width="500" height="380"> <br>
+```
+모두 끊어지고 MC만 살아있는 형태
+```
+<img src="img/new_project4_9_one_button_circuit.png" width="500" height="380"> <br>
+<img src="img/new_project4_10_one_button_circuit.png" width="500" height="380"> <br>
+```
+(MC가 살아있는 형태에서) PB1을 다시 동작하면
+X2가 동작하고 MC를 끊어버린다.
+```
+```
+최종적으로 PB1을 끊으면 X1, X2 모두 다 끊어진다.
+
+(이 동작을 계속 반복)
+```
+
+<img src="img/new_project4_11_one_button_circuit.png" width="500" height="380"> <br>
+```
+(빨간 네모 : X-OR)
+
+P0 : PB1 ▶ X0이 동작하면 M0이 On [1scan]
+```
+<img src="img/new_project4_12_one_button_circuit.png" width="500" height="280"> <br>
+```
+M0이 On이 되면서 M1도 On
+(둘 중 하나라도 On)
+```
+<img src="img/new_project4_13_one_button_circuit.png" width="500" height="280"> <br>
+```
+처음에 M0를 통해 켜진 M1은 추후 M0가 꺼지면서(B접 On) '자기유지'
+```
+<img src="img/new_project4_14_one_button_circuit.png" width="500" height="280"> <br>
+```
+M0과 M1 모두 On으로 같기 때문에 모두 꺼진다.
+```
+
+♧ Create new project <br>
+
+- 체인회로 <br>
+<img src="img/new_project4_15_chain_circuit.png" width="1000" height="650"> <br>
+<img src="img/new_project4_16_chain_circuit.png" width="750" height="320"> <br>
+<img src="img/new_project4_17_chain_circuit.png" width="600" height="480"> <br>
+  ```
+  PB0 : 초기화 버튼
+
+  PB1을 눌러 X1이 동작하지 않으면 다음 단계로 넘어가지 않는다.
+
+  PB1을 눌러 X1이 켜져야지만 PB2를 눌렀을 때 X2가 켜지고, 
+  X2가 켜진 상태에서 PB3를 눌러야지만 X3가 켜진다.
+  ```
+  <img src="img/new_project4_18_chain_circuit.png" width="600" height="480"> <br>
+  ```
+  PL1, PL2, PL3 추가 (자기유지회로 완료 / 순서대로 눌러야지만 동작)
+  ```
+- 원버튼 회로 <br>
+
+  <img src="img/p.png" width="38" height="30"> : 상승펄스 <br>
+  ```
+  [상승펄스 하강펄스 참조]
+
+  ◎ 상승펄스 : 입력신호가 들어오는 순간 신호가 1회 출력
+  ◎ 하강펄스 : 입력신호가 떨어지는 순간 신호가 1회 출력
+
+  https://black-durumi.tistory.com/22
+  ```
+
+  <img src="img/new_project4_19_one_button_circuit.png" width="550" height="400"> <br>
+  → 상승펄스로 해야지만 원버튼이 가능하다. <br>
+  → 지맨스 PLC의 특징으로 메모리를 설정할 수 있는데, 상승펄스에 메모리를 설정할 수 있다. [%M10.0 / "Tag_1"] <br>
+  → X-OR로 구성되어 있다. <br>
+
+  - Simulation <br>
+    - 체인 회로 <br>
+    <img src="img/new_project4_20_simulation.png" width="800" height="350"> <br>
+    <img src="img/new_project4_21_simulation.png" width="800" height="150"> <br>
+    <img src="img/new_project4_22_simulation.png" width="500" height="400"> <br>
+      ```
+      PL1을 키면 On
+      다음 PL3를 킨다고 해도 동작하지 않는다.
+      ▶ X2(PB2)가 동작하지 않기 때문에 PL3(X3)가 동작할 수 없다.
+      ```
+      <img src="img/new_project4_23_simulation.png" width="800" height="200"> <br>
+      <img src="img/new_project4_24_simulation.png" width="500" height="200"> <br>
+      ```
+      PB1, PB2, PB3 모두 실행하였을 때 X1, X2, X3 전부 동작
+      ```
+      ```
+      PB0을 통해 초기화
+      ```
+    - 원버튼 회로 <br>
+      <img src="img/new_project4_25_simulation.png" width="500" height="300"> <br>
+      ```
+      신호를 주게 되면 X4가 동작하고 PL4가 동작하게 된다.
+      PB4에 신호를 주면 X4(1스캔만)만 잠깐 동작하고 사라지면서 X5, PL4가 실행되는 것이다.
+      (상승펄스는 신호가 보이지 않는다.)
+      
+      X4와 X5가 값이 다르기 때문에(0과 1의 상태) X5가 자기유지가 되고 있다.
+      ```
+      <img src="img/new_project4_26_simulation.png" width="500" height="300"> <br>
+      다시, 신호를 주게 되면
+      X4와 X5가 모두 1이 되면서 1scan 동안 배타적 OR에 의해서 꺼진다.
+
+      (신호를 계속 주는 거에 따라 반복(켜짐/꺼짐))
