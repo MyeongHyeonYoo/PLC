@@ -99,7 +99,7 @@ com(M) : 0v → 1M : 마이너스를 연결해주면 된다.
 스텝 단위로 작업 <br>
 
 
-#### Create new project1 <br>
+#### ♧ Create new project1 <br>
 
 <img src="img/new_project1_1.png" width="750" height="450"> <br>
 <img src="img/new_project1_2.png" width="750" height="600"> <br>
@@ -484,7 +484,7 @@ cf
 (인터락을 걸어주는 것 또는 자기유지를 해제시켜주는 것 : 하나의 '릴레이')
 ```
 
-♧ Create new project
+♧ Create new project <br>
 
 <img src="img/new_project3_4_io.png" width="650" height="220"> <br>
 ```
@@ -736,3 +736,196 @@ M0과 M1 모두 On으로 같기 때문에 모두 꺼진다.
       X4와 X5가 모두 1이 되면서 1scan 동안 배타적 OR에 의해서 꺼진다.
 
       (신호를 계속 주는 거에 따라 반복(켜짐/꺼짐))
+
+---
+
+<img src="img/new_project5_1_on_delay.png" width="780" height="450"> <br>
+```
+[스위치 1개]
+
+TON : [ON Delay Timer] PB1 스위치를 눌렀을 때 설정 시간(S)이 있는데, On 하였을 때 설정 시간만큼 딜레이 한다.
+(T는 바로 켜지는게 아니라 딜레이된 시간 이후 켜지게 된다.)
+
+→ 스위치를 누르게 되면 일정 시간동안 딜레이 되었다가 꺼지면 같이 꺼진다.
+```
+```
+[스위치 2개]
+
+PB1 : 시작 스위치
+PB0 : 정지 스위치
+S   : 딜레이 
+
+▶ 시작 스위치(PB1)를 누르면 딜레이(S)가 되고, 정지 스위치(PB0)를 누르면 바로 정지된다.
+
+→ 일반적인 회로는 시작과 정지 스위치가 따로 있다.
+```
+```
+[시퀀스도]
+
+○ PB1 누르면 X 동작하게 되고, X는 자기유지가 된다.
+○ X가 자기유지되면서 T가 동작하지만, 바로 동작하지 않고 일정시간(딜레이) 후 동작하게 된다.
+○ 일정시간이 지나고 L이 동작하게 된다.
+```
+
+<img src="img/new_project5_2_off_delay.png" width="780" height="450"> <br>
+```
+On Delay 타이머 회로와 반대이다.
+```
+```
+[스위치 1개]
+
+TOFF : [OFF Delay Timer] PB1를 누르게 되면 시작은 똑같이 시작하고, 종료가 딜레이(S) 된다.
+                         ex) 차량 내부 등이 문을 닫아도 일정 시간 잠깐 켜져있는 경우
+
+→ 일정 시간 후 T가 동작하여 L이 꺼지게 된다.        
+```
+```
+ON Delay와 OFF Delay는 표시방법이 다르다. (T)
+```
+
+<img src="img/new_project5_3_on_delay_and_off_delay.png" width="780" height="450"> <br>
+```
+ON Delay 타이머를 이용하여 OFF Delay 타이머를 만들 수 있다.
+
+cf) 미쓰비시 같은 경우에는 OFF Delay 타이머가 없다.
+```
+```
+PB1를 통해 R이 동작하고, 이 R로 인해 L이 동작하게 된다. (ON)
+
+PB0를 통해 X가 켜지면서(자기유지) 타이머(T)가 동작하고,
+일정시간 후 R이 끊어지면서 L이 꺼진다. (OFF)
+```
+```
+미쓰비시는 이러한 타이머 회로를 구성하여 프로그램을 제어한다.
+```
+
+♧ Create new project <br>
+
+<img src="img/new_project5_4_tags.png" width="800" height="220"> <br>
+
+&lt;Timer operations&gt; <br>
+● 이전 방식(Step7) <br>
+<img src="img/the_old_way.png" width="160" height="120"> <br>
+
+● (현재 TIA 포탈에서 쓰는)새로나온 방식 <br>
+<img src="img/new_way.png" width="80" height="90"> <br>
+
+
+<img src="img/new_project5_5_program_blocks.png" width="600" height="150"> <br>
+```
+TON 추가
+```
+
+<img src="img/new_project5_6_ton.png" width="800" height="450"> <br>
+```
+PT : 설정 시간
+ET : 현재 시간
+```
+
+
+```
+T#5S → 5초로 설정
+%MD100 → 메모리 설정 : 초/시간(s)은 MW(word)로 나타낼 수 없다. ★
+(101 ~ 103까지는 쓰면 안 된다! ▷ MD는 32bit 사용)
+```
+
+<img src="img/new_project5_7_output_1.png" width="600" height="320"> <br>
+<img src="img/new_project5_7_output_2.png" width="600" height="380"> <br>
+```
+PB2 : 리셋 버튼(스위치)
+
+위 그림처럼 출력(PL1) 방식을 2가지 방법으로 설정할 수 있다.
+```
+```
+PB1을 누르면 X1이 켜지면서 X1이 자기유지되고, 신호를 타이머(T1)에게 계속 주게 된다.
+
+ET(현재 시간)와 PT(설정 시간)를 비교하여 시간이 같아지게 되면 출력(Q/PL1)하게 된다.
+```
+
+<img src="img/new_project5_8_compile.png" width="600" height="200"> <br>
+```
+컴파일 진행 (완료)
+```
+
+#### Simulation 
+
+<img src="img/new_project5_9_simulation1.png" width="600" height="420"> <br>
+<img src="img/new_project5_9_simulation2.png" width="600" height="420"> <br>
+<img src="img/new_project5_10_simulation_monitoring.png" width="600" height="420"> <br>
+```
+모니터링 진행
+```
+
+#### Watch and force tables - Force table (강제 입·출력)
+
+
+```
+PB1, PB2까지만 입력해도 옆에 :P는 자동으로 입력된다.
+```
+
+<img src="img/new_project5_11_simulation_force_table.png" width="600" height="180"> <br>
+```
+PB1만 강제로 주기
+```
+
+<img src="img/force_table_start.png" width="25" height="25"> : Force table start(시작) <br>
+<img src="img/new_project5_12_simulation_force_table_start.png" width="600" height="450"> <br>
+```
+T# 1S_42MS : 현재 시간 (1초) ▶ 시간이 늘어나는 것을 확인할 수 있다.
+```
+<img src="img/new_project5_13_simulation_force_table_start.png" width="600" height="450"> <br>
+```
+PB2에 신호가 들어가고, 5초 후에 PL1이 켜지는 것을 확인할 수 있다.
+```
+
+<img src="img/new_project5_14_simulation_force_table.png" width="600" height="180"> <br>
+<img src="img/force_table_start.png" width="25" height="25"> : Force table start(시작) <br>
+
+
+<img src="img/new_project5_15_simulation_force_table_start.png" width="600" height="450"> <br>
+```
+PL1이 바로 끊어지는 것을 확인할 수 있다.
+```
+
+
+<img src="img/new_project5_17_off_timer.png" width="1200" height="600"> <br>
+<img src="img/new_project5_18_off_timer.png" width="600" height="450"> <br>
+
+<img src="img/new_project5_19_off_timer_compile.png" width="600" height="150"> <br>
+```
+컴파일 진행 (완료)
+```
+
+#### Simulation 
+
+<img src="img/new_project5_20_simulation.png" width="600" height="450"> <br>
+<img src="img/new_project5_21_simulation_force_table.png" width="600" height="150"> <br>
+
+
+<img src="img/force_table_start.png" width="25" height="25"> : Force table start(시작) <br>
+<img src="img/new_project5_22_simulation.png" width="600" height="450"> <br>
+
+```
+바로 켜지는 것을 확인할 수 있다.
+```
+
+<img src="img/new_project5_23_simulation_force_table.png" width="600" height="150"> <br>
+
+
+<img src="img/force_table_start.png" width="25" height="25"> : Force table start(시작) <br>
+<img src="img/new_project5_24_simulation.png" width="600" height="450"> <br>
+```
+타이머 작동 (바로 꺼지지 않는다.)
+```
+<img src="img/new_project5_25_simulation.png" width="600" height="450"> <br>
+```
+일정 시간 후 꺼지는 것을 확인할 수 있다.
+```
+
+<br>
+
+```
+※ ET의 값은 MD(4Byte)를 사용해야 한다. ★★★
+```
+
+---
