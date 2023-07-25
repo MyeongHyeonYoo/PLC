@@ -929,3 +929,119 @@ PL1이 바로 끊어지는 것을 확인할 수 있다.
 ```
 
 ---
+
+
+
+<img src="img/new_project6_1_accumulation_timer.png" width="750" height="450"> <br>
+```
+적산 : 시간을 더한다. (쌓는다.)
+
+적산 타이머 회로 : 설정 시간을 정해주면 그 시간만큼을 
+입력된 시간을 더해서 설정된 시간이 되면 On이 되는 것
+
+한 칸을 1초라고 가정하면, '2초' + '2초' + '나머지 1칸만 해당되는 1초' 후에 On
+```
+
+<img src="img/new_project6_2_flicker_timer.png" width="750" height="450"> <br>
+```
+플리커 : 깜박이다.
+
+FLA의 A : A접점 (위 그림은 A접점만)
+
+PB1의 입력신호가 들어오면 처음엔 일정 시간(2칸)만큼 Off 상태였다가 
+이후 일정 시간(1칸)만큼 On
+
+점멸 : FLA와 반대 / On이 먼저 되고 나중에 Off
+```
+
+♧ Create new project <br>
+
+<img src="img/new_project6_3_add_new_device.png" width="800" height="700"> <br>
+<img src="img/new_project6_4_all_tags.png" width="1000" height="220"> <br>
+
+```
+입력 : 4개 / 출력 : 2개
+```
+
+- 적산 타이머 <br>
+
+  <img src="img/new_project6_5_program_block.png" width="800" height="250"> <br>
+
+  <img src="img/new_project6_6_program_block_tonr.png" width="500" height="400"> <br>
+
+
+  <img src="img/new_project6_7_program_block_accumulation_timer.png" width="700" height="300"> <br>
+  ```
+  PB1 신호가 들어오면 적산
+  T1 : 데이터베이스(DB)
+  R : 리셋 (PB2로 리셋)
+  T#5S : 5초로 설정
+  %MD100 : 현재 시간을 MD100(번)에 저장
+  ```
+
+- 플리커 타이머 <br>
+
+  <img src="img/new_project6_8_program_block_flicker_timer.png" width="700" height="250"> <br>
+  <img src="img/new_project6_9_program_block_flicker_timer.png" width="500" height="400"> <br>
+  <img src="img/new_project6_10_program_block_flicker_timer.png" width="700" height="250"> <br>
+  <img src="img/new_project6_11_program_block_flicker_timer.png" width="700" height="250"> <br>
+  <img src="img/new_project6_12_program_block_flicker_timer.png" width="500" height="400"> <br>
+  <img src="img/new_project6_13_program_block_flicker_timer.png" width="700" height="450"> <br>
+  <img src="img/new_project6_14_program_block_flicker_timer.png" width="700" height="300"> <br>
+  ```
+  출력 위치에 따른 프로그램 작성
+  한 줄로 하면 길어져서 별도로 작성
+  ```
+
+  <img src="img/new_project6_15_program_block_flicker_timer.png" width="700" height="450"> <br>
+  ```
+  현재 시간(ET)은 별도로 설정할 필요 없다.
+  ```
+  ```
+  PB3 신호가 들어오면 2초 동안은 신호가 들어오지 않고, PL2는 작동한다.
+  
+  2초 후에는 T2가 On 되면서 (T2.Q는 끊어지고) PL2는 꺼지게 된다.
+  여기서 T2.Q가 다시 On이 되면서 1초 후에 T3가 On이 되면서 리셋
+  (T3.Q 연결 끊어짐 / T2는 2초 동안 On)
+
+  이후 다시 T2.Q가 끊어지고 PL2 On
+  ```
+
+  #### Compile <br>
+  <img src="img/new_project6_16_compile.png" width="700" height="280"> <br>
+
+  #### Simulation <br>
+  - Watch and force tables - Force table <br>
+    <img src="img/force_table.png" width="20" height="20"> : 강제 입·출력 <br>
+    - 적산 타이머 <br>
+    <img src="img/new_project6_17_simulation.png" width="700" height="180"> <br>
+    <img src="img/new_project6_18_simulation.png" width="700" height="280"> <br>
+    <img src="img/new_project6_19_simulation.png" width="700" height="280"> <br>
+    <img src="img/new_project6_20_simulation.png" width="700" height="280"> <br>
+      ```
+      일정 타이머 후 On
+      ```
+      ```
+      중간에 멈추게 되면 그 시간 그대로 정지(약 1.404초 ~ 1.406초에 정지)
+      ▶ 적산된 값을 기억하고 있다.
+
+      정지 이후 다시 시작하게되면 나머지 시간 진행 후 On
+      ```
+      <img src="img/new_project6_21_simulation_reset.png" width="700" height="180"> <br>
+      
+      <img src="img/new_project6_22_simulation_reset.png" width="700" height="280"> <br>
+      ```
+      리셋 (끌때는 리셋을 통해 꺼야한다.)
+      ```
+    - 플리커 타이머 <br>
+      <img src="img/new_project6_23_simulation.png" width="700" height="180"> <br>
+      <img src="img/new_project6_24_simulation.png" width="700" height="480"> <br>
+      ⓐ <br>
+      <img src="img/new_project6_25_simulation.png" width="700" height="480"> <br>
+      ⓑ <br>
+      <img src="img/new_project6_26_simulation.png" width="700" height="480"> <br>
+      ```
+      점멸 : ⓐ - ⓑ 를 계속 반복하게 된다.
+      ```
+      
+---
