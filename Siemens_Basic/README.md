@@ -1045,3 +1045,249 @@ PB1의 입력신호가 들어오면 처음엔 일정 시간(2칸)만큼 Off 상�
       ```
       
 ---
+
+<img src="img/new_project7_1_image.png" width="800" height="450"> <br>
+<img src="img/new_project7_2_program.png" width="800" height="450"> <br>
+```
+● 센서 감지를 2초 이상 하여야 한다.
+● 센서 감지가 된 이후에는 3초 동안 세척이 들어간다.
+● 세척이 끝나고 나면 센서 감지를 기다린다.
+● 센서 감지를 떠나게되면(사람이 떠나는 것 | NO : Off) 1초 후 3초간 세척을 한다.
+● 3초간 세척이 끝나고 나서 초기화 (처음으로 돌아간다.)
+```
+
+♧ Create new project <br> 
+
+<img src="img/new_project7_3_create.png" width="700" height="600"> <br>
+
+- PLC tags - Show all tags <br>
+
+  <img src="img/new_project7_4_show_all_tags.png" width="800" height="200"> <br>
+  ```
+  SEN     : Sensor(센서)
+  M1      : Relay(릴레이)
+  WASHING : Output(출력) 
+  ```
+
+- Program blocks <br>
+
+  <img src="img/new_project7_5_program_blocks.png" width="700" height="150"> <br>
+
+  <img src="img/new_project7_6_program_blocks.png" width="700" height="450"> <br>
+  <img src="img/new_project7_7_program_blocks.png" width="700" height="300"> <br>
+  ```
+  <??.?>는 4번째 타이머 (추후 나중에 작성)
+  ```
+  <img src="img/new_project7_8_program_blocks.png" width="1000" height="250"> <br>
+  <img src="img/new_project7_9_program_blocks.png" width="700" height="300"> <br>
+  ```
+  마지막 <??.?> 작성 ("T4".Q)
+
+  3초 동안 세척이 된 후에 자기유지를 끊어준다.
+  "T4".Q가 On이 되면서 전체 자기유지가 끊어지게 되면서 초기화된다.
+  ```
+
+  <img src="img/new_project7_10_program_blocks.png" width="700" height="200"> <br>
+  ```
+  <출력 작성>
+
+  WASHING : 출력
+
+
+  M1에 의해 동작(출력/세척)
+  T2가 3초 후 세적이 끝나면서 "T2".Q가 끊어지게 된다.(멈춤)
+  T3가 1초 후 On되면서 "T3".Q가 동작(출력/세척)
+  
+  T4가 On되면 초기화
+
+  총 2번 출력!
+  ```
+
+  #### Compile <br>
+  <img src="img/new_project7_11_compile.png" width="700" height="220"> <br>
+
+  #### Simulation <br>
+
+  <img src="img/new_project7_12_simulation.png" width="550" height="350"> <br>
+  <img src="img/new_project7_13_simulation.png" width="700" height="450"> <br>
+  <img src="img/new_project7_14_simulation.png" width="700" height="530"> <br>
+  ```
+  센서(SEN)를 1로 바꿔주기 (센서 켜기)
+  ```
+  <img src="img/new_project7_15_simulation.png" width="750" height="600"> <br>
+  ```
+  센서(SEN)가 감지되면 2초 있다가 출력(WASHING)이 되고, "T2".Q가 3초가 지나고 꺼지게 된다.
+  ```
+  <img src="img/new_project7_16_simulation.png" width="750" height="600"> <br>
+  ```
+  출력(WASHING)이 끝난 상태
+  ```
+
+  <img src="img/new_project7_17_simulation.png" width="750" height="600"> <br>
+  ```
+  센서(SEN)를 0으로 바꿔주기 (센서 끄기)
+  ```
+  
+  <img src="img/new_project7_18_simulation.png" width="750" height="600"> <br>
+  <img src="img/new_project7_19_simulation.png" width="750" height="600"> <br>
+  ```
+  1초 있다가 "T3".Q가 감지가 되면서 출력(WASHING)되고, 이후 바로 꺼진다.
+  ```
+
+  ```
+  Network 1 : 자기유지 (자기유지에 의해 M1이 설정)
+  Network 2 : 자기유지 된 M1에 의해 동작(WASHING)
+
+  Network 1, 2의 센서(SEN)에 0, 1값을 설정하여 테스트
+  - Network 1 : 1 값을 주어 On
+  - Network 2 : 0 값을 주어 On
+
+  "T4".Q에 의해 완전 초기화
+  ```
+
+  #### Add new device
+  <img src="img/new_project7_20_add_new_device.png" width="620" height="650"> <br>
+  ```
+  7" Display : 숫자 7은 7인치를 의미
+  ```
+
+  <img src="img/new_project7_21_add_new_device.png" width="650" height="620"> <br>
+  ```
+  간단히 설정할 수 있는 위자드(마법사)가 열린다.
+  ```
+
+  <img src="img/new_project7_22_add_new_device.png" width="750" height="620"> <br>
+  <img src="img/new_project7_23_add_new_device.png" width="650" height="620"> <br>
+  ```
+  PLC1번과 연결
+  ```
+
+  <img src="img/new_project7_24_add_new_device.png" width="650" height="620"> <br>
+  ```
+  Header : 위쪽에 있는 헤더 부분
+
+  Header 체크되어 있는 것이 기본값(Default)
+  ```
+
+  <img src="img/new_project7_25_add_new_device.png" width="650" height="620"> <br>
+  ```
+  체크되어 있는 것이 기본값(Default)
+  ```
+
+  <img src="img/new_project7_26_add_new_device.png" width="650" height="620"> <br>
+  ```
+  스크린 1개가 기본값(Default)
+  ```
+  <img src="img/new_project7_27_add_new_device.png" width="650" height="620"> <br>
+  ```
+  네모 [+]버튼을 눌러 추가할 수 있다.
+  
+  지우고 싶은 것 선택하여 키보드 DEL키로 또는 Delete screen으로 삭제 가능
+  ```
+
+  <img src="img/new_project7_28_add_new_device.png" width="650" height="620"> <br>
+  ```
+  시스템에 대한 스크린
+
+  1개 있는 것이 기본값(Default)
+  ```
+  <img src="img/new_project7_29_add_new_device.png" width="650" height="620"> <br>
+  ```
+  체크하면 다른 시스템에 관한 것들 볼 수 있다.
+  ```
+
+  <img src="img/new_project7_30_add_new_device.png" width="650" height="620"> <br>
+  <img src="img/new_project7_31_add_new_device.png" width="650" height="620"> <br>
+
+  ```
+  아래쪽에 나오는 버튼
+
+  추가 및 삭제 : 더블 클릭 및 드레그
+  ```
+  ```
+  (모든 설정은 기본값(Default)으로 설정)
+
+  Finish로 마무리
+  ```
+  <img src="img/new_project7_32_simatic_hmi.png" width="650" height="620"> <br>
+  <img src="img/new_project7_33_simatic_hmi.png" width="650" height="620"> <br>
+  ```
+  타이틀 변경(더블 클릭) 및 위치 이동(드레그)
+  ```
+  <img src="img/new_project7_34_simatic_hmi.png" width="720" height="620"> <br>
+  ```
+  빨간 버튼 추가(드레그)
+  ```
+
+  <img src="img/new_project7_35_simatic_hmi.png" width="720" height="620"> <br>
+  ```
+  그림판을 이용해 그림 파일 추가
+  ```
+
+  <img src="img/new_project7_36_simatic_hmi.png" width="1000" height="620"> <br>
+  ```
+  네모난 파랑색의 빛나는 버튼 클릭
+  ```
+
+  <img src="img/new_project7_37_simatic_hmi.png" width="1000" height="620"> <br>
+  ```
+  태그 등장 - ... 클릭
+  ```
+
+  <img src="img/new_project7_38_simatic_hmi.png" width="600" height="350"> <br>
+
+  <img src="img/new_project7_39_simatic_hmi.png" width="1000" height="620"> <br>
+  ```
+  From / To 값을 1로 변경
+
+  WASHING이 1/On이 되었을 때 나타나게 설정 (평상시 Off/나타나지 않음)
+
+  Range : bit 값
+  ```
+  <img src="img/new_project7_39_2_simatic_hmi.png" width="600" height="300"> <br>
+  ```
+  애니메이션이 설정되어 있는 상태
+  ```
+  
+  <img src="img/new_project7_40_simatic_hmi.png" width="720" height="620"> <br>
+  
+  <img src="img/new_project7_41_simatic_hmi.png" width="1000" height="620"> <br>
+  <img src="img/new_project7_42_simatic_hmi.png" width="1000" height="620"> <br>
+  ```
+  [빨간 버튼(클릭/더블 클릭) - 센서 설정]
+
+  Properties에 tag값 설정
+  ```
+  
+  ```
+  스위치(빨간 버튼) : tag 선택
+  물 그림 : visibility 설정
+  ```
+
+  #### Simulation <br>
+  ※ 먼저 PLC 시뮬레이션을 하여야 한다. <br>
+  <img src="img/new_project7_43_simulation.png" width="600" height="500"> <br>
+  <img src="img/new_project7_44_simulation.png" width="600" height="350"> <br>
+  <img src="img/new_project7_45_simulation.png" width="600" height="350"> <br>
+  ```
+  Finish 클릭
+  ```
+
+  <img src="img/new_project7_46_simulation.png" width="600" height="500"> <br>
+  <img src="img/new_project7_47_simulation.png" width="600" height="500"> <br>
+  ```
+  센서(빨간 버튼) 동작(감지)
+  ```
+  <img src="img/new_project7_48_simulation.png" width="600" height="500"> <br>
+  ```
+  2초가 지나서 물이 나오고, 3초가 지나서 꺼진다.
+  ```
+
+  <img src="img/new_project7_49_simulation.png" width="600" height="500"> <br>
+  <img src="img/new_project7_50_simulation.png" width="600" height="500"> <br>
+  ```
+  사람이 떠나면(센서 감지가 끝나면)
+  1초가 지나면 물이 나오고, 3초 후에 꺼진다.
+  ```
+
+---
