@@ -1291,3 +1291,270 @@ PB1의 입력신호가 들어오면 처음엔 일정 시간(2칸)만큼 Off 상�
   ```
 
 ---
+
+♧ Create new project <br>
+
+<img src="img/new_project8_1_create.png" width="600" height="500"> <br>
+<img src="img/new_project8_2_tags.png" width="700" height="180"> <br>
+<img src="img/new_project8_3_counter_operations.png" width="350" height="180"> <br>
+```
+CTU  : 상승 카운터
+CTD  : 하강 카운터
+CTUD : 상승과 하강을 동시에 할 수 있는 카운터
+```
+
+<img src="img/new_project8_4_ctu.png" width="750" height="350"> <br>
+
+```
+R  : 리셋(reset)
+PV : 카운터(counter) 
+CV : 현재 값
+```
+
+<img src="img/new_project8_5_tag_rename.png" width="520" height="350"> <br>
+<img src="img/new_project8_6_tag_rename.png" width="520" height="100"> <br>
+<img src="img/new_project8_7_tags_check.png" width="750" height="350"> <br>
+
+```
+tag가 추가된 것을 확인할 수 있다.
+
+Data type이 'int'형태로 들어가 있는 것을 볼 수 있다.
+```
+
+<img src="img/new_project8_8_program_block.png" width="550" height="200"> <br>
+
+#### Compile <br>
+<img src="img/new_project8_9_compile.png" width="700" height="180"> <br>
+
+#### Simulation <br>
+<img src="img/new_project8_10_simulation.png" width="600" height="200"> <br>
+```
+PB1의 입력을 메모리를 준 이유는 시뮬레이션을 편하게 하기 위해서 준 것
+```
+
+<img src="img/new_project8_11_simulation.png" width="600" height="500"> <br>
+<img src="img/new_project8_12_simulation.png" width="600" height="200"> <br>
+```
+PB1에 1의 신호를 줄 때마다 카운터 증가
+(1, 0 신호 주는 것 반복해보기)
+```
+
+<img src="img/new_project8_13_simulation.png" width="600" height="200"> <br>
+```
+카운터 수에 맞게 신호가 10번 들어오면서 PL1 On
+```
+
+<img src="img/new_project8_14_simulation.png" width="600" height="230"> <br>
+```
+카운터 수에 맞게 신호가 들어오기 때문에
+그 이상의 신호를 줘도 계속 On 상태가 된다.
+```
+
+<img src="img/new_project8_15_simulation.png" width="600" height="500"> <br>
+```
+PB2에 1의 신호 주기
+```
+
+<img src="img/new_project8_16_simulation.png" width="600" height="220"> <br>
+```
+PB2를 통해 리셋
+```
+
+```
+C0  : 카운터 데이터베이스의 이름(Count Database Name)
+PB1 : 카운터 업(Count Up)
+PB2 : 카운터 리셋(Count Reset)
+R   : Reset
+PV  : 설정 값
+CV  : 현재 값
+```
+
+♧ Add new device <br>
+<img src="img/new_project8_17_add_new_device.png" width="600" height="580"> <br>
+<img src="img/new_project8_18_add_new_device_wizard.png" width="680" height="600"> <br>
+<img src="img/new_project8_19_add_new_device_wizard.png" width="750" height="600"> <br>
+```
+PLC 설정
+```
+<img src="img/new_project8_20_add_new_device_wizard.png" width="680" height="600"> <br>
+```
+PLC 연결된 것 확인
+```
+
+<img src="img/new_project8_21_add_new_device_wizard.png" width="680" height="600"> <br>
+```
+Next 눌러 Default 값 사용
+```
+<img src="img/new_project8_22_add_new_device_wizard.png" width="680" height="600"> <br>
+```
+Next 눌러 Default 값 사용
+```
+<img src="img/new_project8_23_add_new_device_wizard.png" width="680" height="600"> <br>
+```
+Next 눌러 Default 값 사용
+```
+<img src="img/new_project8_24_add_new_device_wizard.png" width="680" height="600"> <br>
+```
+System screens 사용 안 함
+```
+<img src="img/new_project8_25_add_new_device_wizard.png" width="680" height="600"> <br>
+```
+버튼도 기본 설정된 것 사용
+```
+```
+Finish 클릭
+```
+
+<img src="img/new_project8_26_simatic_hmi.png" width="680" height="600"> <br>
+<img src="img/new_project8_27_simatic_hmi.png" width="680" height="600"> <br>
+```
+기본 문구 삭제
+```
+
+<img src="img/new_project8_28_simatic_hmi_icons.png" width="480" height="600"> <br>
+```
+버튼 2개 추가
+
+Elements - 2번째  '네모 버튼' 
+                   - 더블 클릭
+                   - 드레그 
+                   - 한 번 클릭 후 사이즈 맞게 그리기
+```
+
+```
+라이브러리에 있는 버튼(Button)들은 값을 유지하고 있기 때문에
+한 번씩 눌렀을 때 값을 올라가게 하기 위해서는
+Elements - 네모('Text')버튼을 사용하여야 한다.
+```
+
+<img src="img/new_project8_29_simatic_hmi_icons_setting.png" width="280" height="400"> <br>
+```
+속성 설정(아이콘 더블 클릭해도 된다.)
+```
+<img src="img/new_project8_30_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+```
+문구 변경
+```
+<img src="img/new_project8_31_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+```
+디자인(색상) 변경
+```
+
+<img src="img/new_project8_32_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+```
+Press   : 눌렀을 때 이벤트
+Release : 누르지 않은 상태에서의 이벤트
+```
+
+<img src="img/new_project8_33_simatic_hmi_icons_setting.png" width="1200" height="750"> <br>
+```
+Tag(Input/output) 설정
+
+- Bit 값은 그대로 0으로
+```
+
+<img src="img/new_project8_34_simatic_hmi_icons_setting.png" width="800" height="200"> <br>
+<img src="img/new_project8_35_simatic_hmi_icons_setting.png" width="680" height="600"> <br>
+```
+[버튼 추가 - 복사 붙여넣기]
+CTRL + C  
+CTRL + V
+```
+
+<img src="img/new_project8_36_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+<img src="img/new_project8_37_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+<img src="img/new_project8_38_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+
+
+<img src="img/new_project8_39_simatic_hmi_icons.png" width="450" height="150"> <br>
+```
+카운터 값을 보내줄 디스플레이 설정
+```
+
+<img src="img/new_project8_40_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+```
+현재 값 설정
+```
+
+<img src="img/new_project8_41_simatic_hmi_icons_setting.png" width="900" height="250"> <br>
+<img src="img/new_project8_42_simatic_hmi_icons_setting.png" width="400" height="350"> <br>
+```
+애니메이션 동작할 것 추가
+```
+
+<img src="img/new_project8_43_simatic_hmi_icons_setting.png" width="900" height="750"> <br>
+```
+10번째 움직일 수 있게 설정 필요
+```
+
+<img src="img/new_project8_44_simatic_hmi_icons_setting.png" width="800" height="180"> <br>
+```
+Direct movement     : 경로를 다이렉트로 그려주는 것
+Diagonal movement   : 대각선으로 가는 것
+Horizontal movement : 수평으로 가는 것
+Vertical movement   : 수직으로 가는 것
+```
+
+```
+수평으로 움직이는 것 선택(Horizontal movement) [파란 네모/별 모양 클릭]
+```
+
+<img src="img/new_project8_45_simatic_hmi_icons_setting.png" width="800" height="700"> <br>
+```
+화살표 모양 드레그하여 위치 이동
+```
+
+<img src="img/new_project8_46_simatic_hmi_icons_setting.png" width="800" height="700"> <br>
+<img src="img/new_project8_47_simatic_hmi_icons_setting.png" width="650" height="100"> <br>
+```
+tag 설정(CV_0)
+0 ~ 10까지 범위 설정
+
+▶ CV_0 태그의 값에 따라서 움직이게 된다. [0 ~ 10]
+```
+
+<img src="img/new_project8_48_simatic_hmi_icons_setting.png" width="850" height="200"> <br>
+```
+Visibility 추가 (파란 네모/별 클릭)
+```
+
+<img src="img/new_project8_49_simatic_hmi_icons_setting.png" width="850" height="200"> <br>
+
+
+#### Simulation
+PLC 연결 <br>
+<img src="img/new_project8_50_simulation.png" width="800" height="700"> <br>
+<img src="img/new_project8_51_simulation.png" width="800" height="700"> <br>
+```
+Load 클릭
+```
+
+<img src="img/new_project8_52_simulation.png" width="800" height="500"> <br>
+<img src="img/new_project8_53_simulation.png" width="800" height="500"> <br>
+```
+Start modules : Start all 체크 → Finish
+```
+
+<img src="img/new_project8_54_compile.png" width="800" height="500"> <br>
+```
+Root screen 컴파일
+```
+
+<img src="img/new_project8_55_simulation.png" width="800" height="600"> <br>
+<img src="img/new_project8_56_simulation.png" width="800" height="600"> <br>
+<img src="img/new_project8_57_simulation.png" width="800" height="600"> <br>
+<img src="img/new_project8_58_simulation.png" width="800" height="600"> <br>
+<img src="img/new_project8_59_simulation.png" width="800" height="600"> <br>
+<img src="img/new_project8_60_simulation.png" width="800" height="600"> <br>
+```
++1씩 증가하면서 움직이다가 '11'이 되면 사라진다.
+```
+
+<img src="img/new_project8_61_simulation.png" width="800" height="600"> <br>
+```
+RESET : 초기화
+
+(다시 UP을 누르면 1씩 증가하면서 이동)
+```
+
+---
