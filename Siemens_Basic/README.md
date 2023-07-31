@@ -1558,3 +1558,82 @@ RESET : 초기화
 ```
 
 ---
+
+#### ♧ Create new project <br>
+
+<img src="img/new_project9_1_create.png" width="650" height="600"> <br>
+<img src="img/new_project9_2_tags.png" width="1200" height="400"> <br>
+
+
+
+
+<img src="img/new_project9_3_program_blcck.png" width="350" height="400"> <br>
+
+```
+Comparator operations : 비교 연산
+```
+```
+[Math functions]
+
+ADD : 더하기
+SUB : 빼기
+MUL : 곱하기
+DIV : 나누기
+
+MOD : 나머지
+INC : 증가
+DEC : 감소
+ABS : 절대값
+```
+
+<img src="img/new_project9_4_program_blcck.png" width="600" height="200"> <br>
+```
+Int(2Byte)  : 2개씩 자름 (16bit 씩 고정)
+Real(4Byte) : 4개씩 자름
+```
+
+#### compile 
+
+<img src="img/new_project9_5_compile.png" width="800" height="200"> <br>
+
+#### simulation
+
+- ADD <br>
+  <img src="img/new_project9_6_simulation.png" width="700" height="450"> <br>
+  <img src="img/new_project9_7_1_simulation_add.png" width="700" height="700"> <br>
+  <img src="img/new_project9_7_2_simulation_add.png" width="700" height="180"> <br>
+  <img src="img/new_project9_8_1_simulation_add.png" width="700" height="700"> <br>
+  <img src="img/new_project9_8_2_simulation_add.png" width="700" height="180"> <br>
+  <img src="img/new_project9_9_simulation_add.png" width="700" height="600"> <br>
+  ```
+  실행
+  ```
+
+  <img src="img/new_project9_10_simulation_add.png" width="600" height="250"> <br>
+  ```
+  ∴ 100 + 200 = 300
+  ```
+
+- DIV <br>
+  <img src="img/new_project9_11_simulation_div.png" width="600" height="250"> <br>
+  <img src="img/new_project9_12_simulation_div.png" width="600" height="250"> <br>
+  ```
+  ∴ 10 / 3 = 3.333333…
+  ```
+
+
+<img src="img/new_project9_13_simulation_add.png" width="600" height="250"> <br>
+```
+add 추가 (insert input)
+```
+  
+<img src="img/new_project9_14_simulation_add.png" width="600" height="320"> <br>
+```
+여러 개의 값을 추가하여 한 번에 계산(더하기) 할 수 있다.
+```
+
+```
+※ 메모리를 설정해 줄 때 겹치지 않게 사용하여야 한다.
+```
+
+---
