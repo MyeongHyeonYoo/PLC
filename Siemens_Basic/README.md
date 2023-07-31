@@ -7,7 +7,7 @@
 
 <br>
 
-- 객치제향 프로그램 방식 <br>
+- 객체지향 프로그램 방식 <br>
     - 리니어 프로그램 <br>
     - 구조적 프로그램 <br>
 
@@ -1592,11 +1592,11 @@ Int(2Byte)  : 2개씩 자름 (16bit 씩 고정)
 Real(4Byte) : 4개씩 자름
 ```
 
-#### compile 
+#### Compile 
 
 <img src="img/new_project9_5_compile.png" width="800" height="200"> <br>
 
-#### simulation
+#### Simulation
 
 - ADD <br>
   <img src="img/new_project9_6_simulation.png" width="700" height="450"> <br>
@@ -1637,3 +1637,101 @@ add 추가 (insert input)
 ```
 
 ---
+
+♧ Create new project <br>
+
+<img src="img/new_project10_1_create.png" width="800" height="480"> <br>
+
+
+<img src="img/new_project10_2_comparator_operations.png" width="350" height="400"> <br>
+<img src="img/new_project10_3_comparator_operations.png" width="600" height="240"> <br>
+<img src="img/new_project10_4_comparator_operations.png" width="500" height="450"> <br>
+<img src="img/new_project10_5_comparator_operations.png" width="600" height="240"> <br>
+```
+[Rename tag…]
+
+tag_1 → input_1
+tag_2 → input_2
+tag_3 → big
+```
+```
+input_1 > input_2
+
+input_1이 input_2보다 크면 출력을 내보내게 된다.
+```
+
+<img src="img/new_project10_6_comparator_operations.png" width="600" height="550"> <br>
+```
+<비교 연산>
+
+작다(<), 같다(==) 추가
+```
+
+- **`Add new device`** <br>
+
+  <img src="img/new_project10_7_add_new_device.png" width="900" height="650"> <br>
+  <img src="img/new_project10_8_add_new_device.png" width="900" height="650"> <br>
+  ```
+  PLC만 선택하고 나머지는 초깃값으로 진행
+  ```
+  <img src="img/new_project10_9_add_new_device.png" width="700" height="600"> <br>
+
+  <img src="img/new_project10_10_simatic_hmi.png" width="700" height="600"> <br>
+  <img src="img/new_project10_11_simatic_hmi.png" width="900" height="750"> <br>
+  ```
+  포맷 숫자 : 4개(9999) 설정
+  ```
+  <img src="img/new_project10_12_simatic_hmi.png" width="900" height="700"> <br>
+  <img src="img/new_project10_13_simatic_hmi.png" width="900" height="300"> <br>
+  <img src="img/new_project10_14_simatic_hmi.png" width="900" height="700"> <br>
+  <img src="img/new_project10_15_simatic_hmi.png" width="900" height="700"> <br>
+  <img src="img/new_project10_16_simatic_hmi.png" width="900" height="700"> <br>
+  ```
+  tag 설정 : big
+  ```
+  <img src="img/new_project10_17_simatic_hmi.png" width="900" height="700"> <br>
+  ```
+  tag 설정 : small
+  ```
+  <img src="img/new_project10_18_simatic_hmi.png" width="900" height="700"> <br>
+  ```
+  tag 설정 : equal
+  ```
+  <img src="img/new_project10_19_simatic_hmi.png" width="1000" height="300"> <br>
+  ```
+  Toolbox ▶ 텍스트(Text) 추가
+  ```
+
+#### Simulation 
+
+  <img src="img/new_project10_20_simulation.png" width="600" height="500"> <br>
+  ```
+  시작하는 현재 값 : 0
+
+  input_1 == input_2 
+  ▶ 두 값이 같기 때문에 Equal에 On
+  ```
+
+  <img src="img/new_project10_21_simulation.png" width="600" height="400"> <br>
+  ```
+  input_1을 10으로 변경
+  ```
+
+  <img src="img/new_project10_22_simulation.png" width="600" height="400"> <br>
+  ```
+  input_1 > input_2 
+  ▶ input_1이 크기 때문에 big에 On
+  ```
+
+  <img src="img/new_project10_23_simulation.png" width="600" height="400"> <br>
+  ```
+  input_2를 20으로 변경
+  ```
+
+  <img src="img/new_project10_24_simulation.png" width="600" height="400"> <br>
+  ```
+  input_1 < input_2 
+  ▶ input_1이 작기 때문에 Small에 On
+  ```
+
+  ---
