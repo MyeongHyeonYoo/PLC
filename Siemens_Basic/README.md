@@ -471,7 +471,7 @@ cf
 
 <img src="img/new_project3_3_last_input_priority_circuit.png" width="800" height="450"> <br>
 → X1과 X2가 선입력 우선회로와 달리 위치가 바뀌었다. <br>
-→ 인터락이었던 X1과 X2의 위치가 자기유지 해지가 된다. (☆인터락이 아니다.) <br>
+→ 인터락이었던 X1과 X2의 위치가 자기유지 해제가 된다. (☆인터락이 아니다.) <br>
 → X1과 X2는 상대편이 자기유지를 해제시켜주는 회로가 되었다. <br>
 → 3개인 경우도 자기유지를 해제시켜주는 것은 똑같다. 다만, 2개일 경우와 달리 자기유지를 해제시켜주는 것이 늘어날 뿐이다. <br>
 
@@ -1735,3 +1735,135 @@ input_1이 input_2보다 크면 출력을 내보내게 된다.
   ```
 
   ---
+
+#### Add new block
+
+<img src="img/new_project11_1_function.png" width="900" height="600"> <br>
+```
+PLC_1 - Program blocks - Add new block - 'Function' 생성
+```
+
+<img src="img/new_project11_2_function.png" width="700" height="350"> <br>
+```
+Block interface 클릭 → Function Block interface 설정
+```
+
+<img src="img/new_project11_3_function.png" width="800" height="600"> <br>
+```
+m1 : 메모리 생성
+```
+```
+#start ▶ #이 붙으면 지역 변수를 나타낸다.
+```
+```
+m1을 가지고 자기유지
+
+start를 누르게 되면 m1에 신호가 들어가서 m1이 자기유지가 되고 있다가
+stop을 누르면 자기유지가 해제 된다.
+출력은 output으로 나간다.
+```
+
+
+#### Add new block
+
+<img src="img/new_project11_4_function_block.png" width="900" height="600"> <br>
+```
+PLC_1 - Program blocks - Add new block - 'Function block' 생성
+```
+
+<img src="img/new_project11_5_function_block.png" width="700" height="350"> <br>
+```
+Block interface 클릭 → Function Block interface 설정
+```
+
+
+<img src="img/new_project11_6_function_block.png" width="800" height="650"> <br>
+
+```
+Static : 값을 계속 유지하고 있는 것 [Function block에만 Static 영역 존재]
+Temp   : 한 스캔만 값을 유지하는 것, 즉 임시 저장(1번만 저장)
+```
+```
+현재 만들어진 것은 
+Function과 Function block이 똑같다.
+
+지역변수이기 때문에 변수 값을 똑같이 넣어도 문제되지 않는다.
+```
+
+<img src="img/new_project11_7_main.png" width="800" height="650"> <br>
+
+```
+Function을 만들어 쓰는 이유는
+하나를 가지고 여러 개를 사용하기 위한 것
+```
+```
+Database가 있으면 Function block이 되고
+Database가 없으면 Function이 된다.
+```
+
+#### Compile <br>
+<img src="img/new_project11_8_compile.png" width="700" height="200"> <br>
+
+
+#### Simulation <br>
+
+<img src="img/new_project11_9_simulation.png" width="700" height="600"> <br>
+```
+출력은 모두 0(FALSE)
+```
+
+<img src="img/new_project11_10_simulation.png" width="700" height="600"> <br>
+<img src="img/new_project11_11_simulation.png" width="700" height="600"> <br>
+```
+출력이 1로 바뀜(TRUE)
+```
+
+<img src="img/new_project11_12_simulation.png" width="700" height="600"> <br>
+<img src="img/new_project11_13_simulation.png" width="700" height="600"> <br>
+```
+출력을 다시 0(FALSE)으로 바꿈
+```
+```
+☆ Function은 1스캔 값만 가지고 있기 때문에 자기유지가 안 된다. (데이터베이스가 없는 점)
+   Temp는 1스캔만 기억하고 있기 때문에 다음 스캔에는 꺼지게 된다.
+```
+
+
+<img src="img/new_project11_14_simulation.png" width="700" height="650"> <br>
+<img src="img/new_project11_15_simulation.png" width="700" height="600"> <br>
+```
+1을 주면 출력이 1(TRUE)이 된다.
+```
+
+<img src="img/new_project11_16_simulation.png" width="700" height="650"> <br>
+<img src="img/new_project11_17_simulation.png" width="700" height="650"> <br>
+```
+꺼도(0) 출력(1/TRUE)이 된다. [자기유지] (Tag_6)
+```
+
+
+<img src="img/new_project11_18_simulation.png" width="700" height="600"> <br>
+<img src="img/new_project11_19_simulation.png" width="700" height="600"> <br>
+```
+자기유지 해제 (Tag_5에 1값 주기)
+```
+
+<img src="img/new_project11_20_simulation.png" width="700" height="600"> <br>
+<img src="img/new_project11_21_simulation.png" width="700" height="600"> <br>
+```
+Tag_5에 0 값을 주어 모두 끄기
+```
+
+```
+Function과 Function block을 똑같이 자기유지회로로 만들었지만,
+
+차이점은 Function에는 Static이 없고 Function block에는 Static을 가지고 있다.
+하여, Function block은 m1의 값을 DB(Database)에 저장하고 있다.
+
+● Function은 temp만 가지고 있어 1스캔만 진행할 때 사용
+● Function block은 값을 기억하고 싶을 때 사용
+```
+
+---
+---
+---
